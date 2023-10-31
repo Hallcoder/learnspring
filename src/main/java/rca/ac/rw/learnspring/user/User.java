@@ -11,8 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Data //provide equivalent of getter and setters
 @Builder //will help build the object in an easy way
@@ -20,45 +19,16 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "_user") //to avoid ambiguity or same name as postgres default user table
-public class User implements UserDetails {
+public class User {
     @Id
     @GeneratedValue
-    private Integer id;
+    private UUID id;
     private String firstName;
     private String lastName;
     private String email;
+    private String name;
+    private String telephone;
     private String password; //we have a field so we don't need to override the getPassword method
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    private Set<Role> roles  = new HashSet<>();
 
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
-    }
-
-    @Override
-    public String getUsername() {
-        return email;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 }
