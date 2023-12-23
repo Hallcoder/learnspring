@@ -1,11 +1,16 @@
 package rca.ac.rw.learnspring.utils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
 public class ApiResponse<T> {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private T data;
@@ -68,41 +73,6 @@ public class ApiResponse<T> {
         return ResponseEntity.status(this.status).body(this);
     }
 
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public HttpStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(HttpStatus status) {
-        this.status = status;
-    }
-
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public void setError(Object error) {
-        this.error = error;
-    }
-
-    public Object getError() {
-        return error;
-    }
 }
 
 

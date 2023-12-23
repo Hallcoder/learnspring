@@ -22,7 +22,6 @@ import rca.ac.rw.learnspring.utils.ApiResponse;
 
 @Configuration
 @RequiredArgsConstructor
-
 public class ApplicationConfig {
     private final UserRepository userRepository;
 

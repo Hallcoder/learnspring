@@ -28,7 +28,7 @@ public class User {
     private String email;
     private String name;
     private String telephone;
-    private String password; //we have a field so we don't need to override the getPassword method
+    private String password; //we have a field, so we don't need to override the getPassword method
     private Set<Role> roles  = new HashSet<>();
 
 }

@@ -32,11 +32,10 @@ public class AuthenticationService {
         repository.save(user);
         var jwtToken = jwtService.generateToken(UserPrincipal.create(user));
         return AuthenticationResponse.builder().token(jwtToken).build();
-
-
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
+        System.out.println("Authenticating...");
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword())
         );
